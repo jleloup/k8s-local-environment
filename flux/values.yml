@@ -1,0 +1,42 @@
+---
+clusterRole:
+  create: true
+syncGarbageCollection:
+  enabled: true
+git:
+  branch: master
+  label: local
+  pollInterval: 1m
+  url: git@github.com:jleloup/k8s-local-environment.git
+  path: deployments
+  secretName: flux-git-deploy
+logFormat: json
+memcached:
+  resources:
+    limits:
+      cpu: 100m
+      memory: 256Mi
+    requests:
+      cpu: 100m
+      memory: 256Mi
+rbac:
+  create: true
+registry:
+  pollInterval: 1m
+resources:
+  limits:
+    cpu: 100m
+    memory: 256Mi
+  requests:
+    cpu: 100m
+    memory: 256Mi
+serviceAccount:
+  create: true
+prometheus:
+  enabled: true
+  serviceMonitor:
+    create: true
+    interval: "30s"
+    namespace: "default"
+    additionalLabels:
+      prometheus: "prometheus-local"
