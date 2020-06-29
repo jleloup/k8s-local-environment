@@ -1,1 +1,34 @@
 ---
+prometheus:
+  ingress:
+    enabled: true
+    host: localhost
+    paths:
+      - /prometheus
+
+  serviceMonitor:
+    selfMonitor: true
+
+  prometheusSpec:
+    externalUrl: http://localhost
+    routePrefix: /prometheus
+
+alertmanager:
+  ingress:
+    enabled: true
+    host: localhost
+    paths:
+      - /alertmanager
+  externalUrl: http://localhost
+  routePrefix: /alertmanager
+
+grafana:
+  ingress:
+    enabled: true
+    hosts:
+      - localhost
+    path: /grafana
+
+  grafana.ini:
+    server:
+      serve_from_sub_path: /grafana
